@@ -8,17 +8,24 @@
 </head>
     <h1>TEST PAGE</h1>
 <body>
-<input type="button" onclick="Test();" value="测试"/>
+用户名:<input type="text" id="name" name="name" /><br/>
+密码:<input type="text" id="password" name="password" /><br/>
+<input type="button" onclick="Test();" value="登录"/>
 <script>
     function Test() {
         $.ajax({
             url:'/user/show',
             type:'get',
             data:{
-                name:'demo'
+                name:$("#name").val(),
+                password:$("#password").val()
             },
             success: function (resultData) {
-                alert(resultData)
+                if (resultData===1){
+                    alert("登录成功!")
+                }else {
+                    alert("登录失败!")
+                }
             },
             error: function (msg) {
                 alert(msg);
